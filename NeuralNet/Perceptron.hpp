@@ -23,7 +23,7 @@ class Perceptron {
     
 private:
     int inputSize = 1;
-    vector<int> weights;
+    vector<float> weights;
     
 public:
     Perceptron(int inSize, vector<float> &inWeights);

@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <tuple>
 #include "Perceptron.hpp"
+#include "Example.hpp"
 
 class NeuralNet {
 private:
@@ -25,8 +26,8 @@ private:
 public:
     NeuralNet(vector<int> &layerSize);
     ~NeuralNet();
-    vector<vector<float>> feedForward(vector<float> &inActuals);
-    tuple<int> backwardPropLearning(vector<Example> examples, int alpha);
+    vector<vector<float>> feedForward(const vector<float> &inActuals);
+    tuple<float> backPropLearning(vector<Example> examples, float alpha);
 };
 
 #endif /* NeuralNet_hpp */

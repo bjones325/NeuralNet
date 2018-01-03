@@ -37,29 +37,42 @@ NeuralNet::~NeuralNet() {
     
 }
 
-vector<vector<float>> NeuralNet::feedForward(vector<float> &inActuals) {
+vector<vector<float>> NeuralNet::feedForward(const vector<float> &inActuals) {
     vector<vector<float>> inputList;
     inputList.push_back(inActuals);
     for (int i = 0; i < numberLayers; i++) {
         vector<Perceptron> percep = layers[i];
         vector<float> currentInput;
-        for (int j = 0; j < percep.size(); j++) {
-            Perceptron currentPerc = percep[j];
+        for (Perceptron currentPerc : percep) {
             vector<float> input = inputList[i];
-            currentInput.push_back(currentPerc.sigmoidActivation(input));
+        currentInput.push_back(currentPerc.sigmoidActivation(input));
         }
         inputList.push_back(currentInput);
     }
     return inputList;
 }
 
-tuple<float> NeuralNet::backPropLearning(vector<Example> examples, int alpha) {
+tuple<float> NeuralNet::backPropLearning(vector<Example> examples, float alpha) {
     
     float averageError = 0;
     float averageWeightChange = 0;
     float numWeights = 0;
     
-    for (int i = 0; i < examples.size(); i++) {
-        vector<float> deltas;
+    for (Example currExample : examples) {
+        vector<vector<float>> deltas;
+        vector<float> outDelta;
+        vector<vector<float>> allLayerOutput = feedForward(currExample.getInputList());
+        vector<float> lastLayerOutput = allLayerOutput.back();
+        
+        for (int i = 0; i < currExample.getOutputList().size(); i++) {
+            float gPrime = outputLayer[i].sigmoidActivation(allLayerOutput[allLayerOutput.size() - 2]);
+            float error = currExample.getOutput(i) - lastLayerOutput[i];
+            float delta = gPrime * error;
+            averageError += error * error / 2;
+            outDelta.push_back(delta);
+        }
+        deltas.push_back(outDelta);
+        
+        //Backprop hiddens
     }
 }

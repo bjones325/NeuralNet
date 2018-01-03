@@ -59,9 +59,9 @@ void Perceptron::printInfo() {
     }
 }
 
-Perceptron::Perceptron(int inSize, vector<int> &inWeights) : inputSize(inSize + 1) {
+Perceptron::Perceptron(int inSize, vector<float> &inWeights) : inputSize(inSize + 1) {
     if (inWeights.size() == 0) {
-        weights = inWeights;
+        this->weights = inWeights;
     } else {
         /*for (int i = 0; i < inSize; i++) {
             weights[i] = 1;
