@@ -23,10 +23,10 @@ class Perceptron {
     
 private:
     int inputSize = 1;
-    int* weights = NULL;
+    vector<int> weights;
     
 public:
-    Perceptron(int inSize, int inWeights[]);
+    Perceptron(int inSize, vector<int> inWeights);
     
     ~Perceptron();
     

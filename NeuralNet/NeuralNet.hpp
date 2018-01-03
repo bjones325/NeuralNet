@@ -15,14 +15,15 @@
 
 class NeuralNet {
 private:
-    int layerSize;
-    int numberHiddenLayers;
-    int numberLayers;
+    unsigned long numberHiddenLayers;
+    unsigned long numberLayers;
+    vector<int> layerSizes;
     vector<Perceptron> outputLayer;
     vector<vector<Perceptron>> hiddenLayers;
+    vector<vector<Perceptron>> layers;
     
 public:
-    NeuralNet(int layerSize);
+    NeuralNet(vector<int> layerSize);
     ~NeuralNet();
     vector<vector<Perceptron>> feedForward(vector<float> &inActuals);
     tuple<int> backwardPropLearning(int examples, int alpha);

@@ -31,6 +31,7 @@
 		47695C0A1FFC991C003E164B /* NeuralNet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NeuralNet.cpp; sourceTree = "<group>"; };
 		47695C0B1FFC991C003E164B /* Perceptron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Perceptron.cpp; sourceTree = "<group>"; };
 		47695C0C1FFC991C003E164B /* Perceptron.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Perceptron.hpp; sourceTree = "<group>"; };
+		47695C0F1FFD05D7003E164B /* NeuralNet.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = NeuralNet.py; path = "../../../../Downloads/Project 4/NeuralNet.py"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				47695C0A1FFC991C003E164B /* NeuralNet.cpp */,
+				47695C0F1FFD05D7003E164B /* NeuralNet.py */,
 				47695C091FFC991C003E164B /* NeuralNet.hpp */,
 				47695C0B1FFC991C003E164B /* Perceptron.cpp */,
 				47695C0C1FFC991C003E164B /* Perceptron.hpp */,

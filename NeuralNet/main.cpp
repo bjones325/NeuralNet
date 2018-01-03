@@ -10,8 +10,8 @@
 #include "Perceptron.hpp"
 
 int main(int argc, const char * argv[]) {
-    int weightgg[1] = {1};
-    Perceptron pc (1, weightgg);
+    vector<int> items;
+    Perceptron pc (1, items);
     pc.printInfo();
     vector<int> inputs({1});
     std::cout << "Sum: " << pc.getWeightedSum(inputs) <<endl;

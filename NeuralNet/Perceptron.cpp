@@ -59,11 +59,10 @@ void Perceptron::printInfo() {
     }
 }
 
-Perceptron::Perceptron(int inSize, int inWeights[]) : inputSize(inSize + 1) {
-    if (weights != NULL) {
+Perceptron::Perceptron(int inSize, vector<int> inWeights) : inputSize(inSize + 1) {
+    if (inWeights.size() == 0) {
         weights = inWeights;
     } else {
-        weights = new int[inSize];
         /*for (int i = 0; i < inSize; i++) {
             weights[i] = 1;
         }*/
@@ -72,7 +71,7 @@ Perceptron::Perceptron(int inSize, int inWeights[]) : inputSize(inSize + 1) {
 }
 
 Perceptron::~Perceptron() {
-    delete weights;
+    
 }
 
 float sigmoid(float value) {
