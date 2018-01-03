@@ -23,11 +23,10 @@ private:
     vector<vector<Perceptron>> layers;
     
 public:
-    NeuralNet(vector<int> layerSize);
+    NeuralNet(vector<int> &layerSize);
     ~NeuralNet();
-    vector<vector<Perceptron>> feedForward(vector<float> &inActuals);
-    tuple<int> backwardPropLearning(int examples, int alpha);
-    
+    vector<vector<float>> feedForward(vector<float> &inActuals);
+    tuple<int> backwardPropLearning(vector<Example> examples, int alpha);
 };
 
 #endif /* NeuralNet_hpp */

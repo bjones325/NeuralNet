@@ -26,17 +26,17 @@ private:
     vector<int> weights;
     
 public:
-    Perceptron(int inSize, vector<int> inWeights);
+    Perceptron(int inSize, vector<float> &inWeights);
     
     ~Perceptron();
     
-    float getWeightedSum(vector<int> &inActuals);
+    float getWeightedSum(vector<float> &inActuals);
     
-    float sigmoidActivation(vector<int> &inActuals);
+    float sigmoidActivation(vector<float> &inActuals);
     
-    float sigmoidActivationDeriv(vector<int> &inActuals);
+    float sigmoidActivationDeriv(vector<float> &inActuals);
     
-    float updateWeights(vector<int> &inActuals, float alpha, float delta);
+    float updateWeights(vector<float> &inActuals, float alpha, float delta);
     
     void setRandomWeights();
     

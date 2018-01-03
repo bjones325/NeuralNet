@@ -8,7 +8,7 @@
 
 #include "Perceptron.hpp"
 
-float Perceptron::getWeightedSum(vector<int> &inActuals) {
+float Perceptron::getWeightedSum(vector<float> &inActuals) {
     float sum = 0;
     for (int i = 0; i < inActuals.size(); i++) {
         sum += inActuals[i] * weights[i];
@@ -16,24 +16,24 @@ float Perceptron::getWeightedSum(vector<int> &inActuals) {
     return sum;
 }
 
-float Perceptron::sigmoidActivation(vector<int> &inActuals) {
-    vector<int> biasedActuals = inActuals;
-    biasedActuals.back() = 1;
+float Perceptron::sigmoidActivation(vector<float> &inActuals) {
+    vector<float> biasedActuals = inActuals;
+    biasedActuals.push_back(1.0);
     float sum = getWeightedSum(biasedActuals);
     return sigmoid(sum);
 }
 
-float Perceptron::sigmoidActivationDeriv(vector<int> &inActuals) {
-    vector<int> biasedActuals = inActuals;
-    biasedActuals.back() = 1;
+float Perceptron::sigmoidActivationDeriv(vector<float> &inActuals) {
+    vector<float> biasedActuals = inActuals;
+    biasedActuals.push_back(1.0);
     float sum = getWeightedSum(biasedActuals);
     return sigmoidDeriv(sum);
 }
 
-float Perceptron::updateWeights(vector<int> &inActuals, float alpha, float delta) {
+float Perceptron::updateWeights(vector<float> &inActuals, float alpha, float delta) {
     float modification = 0.0;
-    vector<int> biasedActuals = inActuals;
-    biasedActuals.back() = 1;
+    vector<float> biasedActuals = inActuals;
+    biasedActuals.push_back(1.0);
     
     for (int i = 0; i < biasedActuals.size(); i++) {
         float change = alpha * biasedActuals[i] * delta;
@@ -59,7 +59,7 @@ void Perceptron::printInfo() {
     }
 }
 
-Perceptron::Perceptron(int inSize, vector<int> inWeights) : inputSize(inSize + 1) {
+Perceptron::Perceptron(int inSize, vector<int> &inWeights) : inputSize(inSize + 1) {
     if (inWeights.size() == 0) {
         weights = inWeights;
     } else {

@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:NeuralNet.xcodeproj">
+      location = "group:/Users/bjones325/Documents/Projects/NeuralNet/NeuralNet/Example.cpp">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/bjones325/Documents/Projects/NeuralNet/NeuralNet/Example.hpp">
+   </FileRef>
+   <FileRef
+      location = "group:../../../../Downloads/bjones325_p4sub/NeuralNet.py">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
