@@ -52,7 +52,7 @@ vector<vector<float>> NeuralNet::feedForward(const vector<float> &inActuals) {
     return inputList;
 }
 
-tuple<float> NeuralNet::backPropLearning(vector<Example> examples, float alpha) {
+tuple<float, float> NeuralNet::backPropLearning(vector<Example> examples, float alpha) {
     
     float averageError = 0;
     float averageWeightChange = 0;
@@ -74,5 +74,38 @@ tuple<float> NeuralNet::backPropLearning(vector<Example> examples, float alpha) 
         deltas.push_back(outDelta);
         
         //Backprop hiddens
+        
+        for (int i = (int) numberHiddenLayers - 1; i > -1; i--) {
+            vector<Perceptron> layer = layers[i];
+            vector<Perceptron> nextLayer = layers[i+1];
+            vector<float> hiddenDelta;
+            
+            for (int j = 0; j < layer.size(); j++) {
+                float gPrime = layer[j].sigmoidActivationDeriv(allLayerOutput[i]);
+                float delta = 0.0;
+                
+                for (int nextLayInd = 0; i < nextLayer.size(); nextLayInd++) {
+                    vector<float> percepWeight = nextLayer[nextLayInd].getWeights();
+                    percepWeight.erase(percepWeight.begin() - 1);
+                    delta += (percepWeight[i] * deltas[0][j]);
+                }
+                delta = gPrime * delta;
+                hiddenDelta.push_back(delta);
+            }
+            deltas.insert(deltas.begin(), hiddenDelta);
+        }
+        
+        for (int i = 0; i < numberLayers; i++) {
+            vector<Perceptron> layer = layers[i];
+            for (int j = 0; i < layer.size(); j++) {
+                float weightMod = layer[j].updateWeights(allLayerOutput[i], alpha, deltas[i][j]);
+                averageWeightChange += weightMod;
+                numWeights += layer[j].getInputSize();
+            }
+        }
     }
+    averageError /= (examples.size() * examples[0].getInputList().size());
+    averageWeightChange /= numWeights;
+    tuple<float, float> results (averageError, averageWeightChange);
+    return results;
 }

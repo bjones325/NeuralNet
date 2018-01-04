@@ -27,7 +27,7 @@ public:
     NeuralNet(vector<int> &layerSize);
     ~NeuralNet();
     vector<vector<float>> feedForward(const vector<float> &inActuals);
-    tuple<float> backPropLearning(vector<Example> examples, float alpha);
+    tuple<float, float> backPropLearning(vector<Example> examples, float alpha);
 };
 
 #endif /* NeuralNet_hpp */

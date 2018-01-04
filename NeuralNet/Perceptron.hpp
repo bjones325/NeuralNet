@@ -40,6 +40,10 @@ public:
     
     void setRandomWeights();
     
+    vector<float> getWeights();
+    
+    int getInputSize();
+    
     void printInfo();
 };
 

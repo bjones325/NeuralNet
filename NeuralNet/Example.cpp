@@ -12,6 +12,10 @@ Example::Example(vector<float> input, vector<float> output) : inputList(input), 
     
 }
 
+Example::~Example() {
+    
+}
+
 vector<float> Example::getInputList() {
     return inputList;
 }

@@ -50,6 +50,14 @@ void Perceptron::setRandomWeights() {
     }
 }
 
+vector<float> Perceptron::getWeights() {
+    return weights;
+}
+
+int Perceptron::getInputSize() {
+    return inputSize;
+}
+
 void Perceptron::printInfo() {
     std::cout << "InputSize " << inputSize << endl;
     std::cout << "Weights:" << endl;
