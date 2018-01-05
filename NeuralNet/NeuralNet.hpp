@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <tuple>
+#include <climits>
 #include "Perceptron.hpp"
 #include "Example.hpp"
 
@@ -28,6 +29,9 @@ public:
     ~NeuralNet();
     vector<vector<float>> feedForward(const vector<float> &inActuals);
     tuple<float, float> backPropLearning(vector<Example> examples, float alpha);
+    friend void trainNeuralNet(vector<Example> examples, vector<Example> test, float alpha, float weightChangeThreshold, NeuralNet net);
 };
+
+void trainNeuralNet(vector<Example> examples, vector<Example> test, float alpha, float weightChangeThreshold, vector<float> hiddenLayerList, NeuralNet net);
 
 #endif /* NeuralNet_hpp */

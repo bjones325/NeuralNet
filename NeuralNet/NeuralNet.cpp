@@ -109,3 +109,42 @@ tuple<float, float> NeuralNet::backPropLearning(vector<Example> examples, float 
     tuple<float, float> results (averageError, averageWeightChange);
     return results;
 }
+
+void trainNeuralNet(vector<Example> examples, vector<Example> test, float alpha, float weightChangeThreshold, NeuralNet net) {
+    int numberIn = examples[0].getInputList().size();
+    int numberOut = examples[0].getOutputList().size();
+    
+    int Time = 5;
+    vector<int> hiddenLayerList;
+    for (vector<Perceptron> layer : net.hiddenLayers) {
+        hiddenLayerList.push_back((int) layer.size());
+    }
+    cout << "Beginning training of NeuralNet";
+    
+    /*vector<int> layerList = hiddenLayerList;
+    layerList.insert(layerList.begin(), numberIn);
+    layerList.insert(layerList.end(), numberOut);*/
+    
+    int iteration = 0.0;
+    float trainError = 0.0;
+    float weightMod = 0.0;
+    
+    tuple<float, float> results = net.backPropLearning(examples, alpha);
+    trainError = get<0>(results);
+    weightMod = get<1>(results);
+    iteration++;
+    while (weightMod >= weightChangeThreshold and iteration <= INT_MAX) {
+        tuple<float, float> nextResults = net.backPropLearning(examples, alpha);
+        float trainError = get<0>(nextResults);
+        float weightMod = get<1>(nextResults);
+        iteration++;
+    }
+    
+    cout << "Finished after " << iteration << " iterations. Good job.";
+    cout << "Train Error: " << trainError << " Weight Mod: " << weightMod;
+    cout << endl << "Examining accuracy of neural network.";
+    
+    float testError = 0.0;
+    float testCorrect = 0.0;
+    float testAccuracy = 0.0;
+}
