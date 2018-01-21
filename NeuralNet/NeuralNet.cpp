@@ -147,4 +147,28 @@ void trainNeuralNet(vector<Example> examples, vector<Example> test, float alpha,
     float testError = 0.0;
     float testCorrect = 0.0;
     float testAccuracy = 0.0;
+    
+    for (Example exam : test) {
+        vector<float> inputList = exam.getInputList();
+        vector<float> outputList = exam.getOutputList();
+        
+        vector<vector<float>> results = net.feedForward(inputList);
+        vector<float> roundedResults;
+        
+        for (int i = 0; i < results[results.size() - 1].size(); i++) {
+            float item = results[results.size() - 1][i];
+            roundedResults.push_back(round(item));
+        }
+        
+        if (outputList == roundedResults) {
+            testCorrect++;
+        } else {
+            testError++;
+        }
+    }
+    
+    float testTotal = testCorrect + testError;
+    testAccuracy = testCorrect / testTotal;
+    
+    cout << endl << "Feed Forward Test Correctly Classified " << testCorrect << ", incorrectly classified " << testError << " for an accuracy of " << testAccuracy;
 }
